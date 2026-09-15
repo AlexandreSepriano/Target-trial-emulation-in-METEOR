@@ -145,8 +145,9 @@ packageVersion("ltmle") # 1.3.0
 #
 #    L1s is treated two ways. In the stop strategies it stays an ordinary
 #    covariate, an Lnode. In the switch strategies it becomes an intervention
-#    node, an Anode with its own treatment model gSW. The comparator arm is
-#    therefore not numerically identical between the two families.
+#    node, an Anode with its own treatment model gSW. Because only a treated 
+#    patient can switch, the switching model is constrained to zero probability 
+#    where switching is impossible, so the comparator arm is the same for both families.
 #
 #    Fitted models. ltmle groups consecutive L and Y nodes
 #    that are not separated by a treatment node into a block, and fits one Q
@@ -252,7 +253,7 @@ t3 <- data.frame(
 t3_num <- data.frame(Method = "LTMLE", t(c(ate, po11 = po11, po00 = po00, ev)))
 print(t3)
 
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Tables/")
+setwd("C:/mypath/Tables/")
 writexl::write_xlsx(t3, "Table3ltmle.xlsx")
 
 
@@ -1072,7 +1073,7 @@ all_ft
 
 
 
-#####>>>>>> ATE, PO and e-value (Table 2) 
+#####>>>>>> ATE, PO and e-value (Table 3) 
 
 # 1. Create the formatted data frame
 table3_data <- data.table(
@@ -1124,7 +1125,7 @@ writexl::write_xlsx(s6, "TableS6gformula.xlsx")
 ## and the confounder history in the previous visit. 
 ## 
 ## This is not the sustained-regime contrast of the LTMLE, MSM and g-formula. 
-## It is the traditional approach included in Table 2 for comparison.
+## It is the traditional approach included in Table 3 for comparison.
 ##
 ## Data: meteor12longnext.csv, long format, 3 rows per patient, n = 352.
 ##       t0 = 0 baseline, t0 = 1 six months, t0 = 2 twelve months.
@@ -1221,7 +1222,7 @@ cat(sprintf("\nWorking correlation (exchangeable alpha) = %.4f\n",
             summary(m_full)$corr[1, 1]))
 
 
-#####>>>>>> ATE, marginal outcomes and e-value (Table 2)
+#####>>>>>> ATE, marginal outcomes and e-value (Table 3)
 
 s_full  <- summary(m_full)$coefficients
 b_gee   <- unname(s_full[A, "Estimate"])
@@ -1754,7 +1755,7 @@ gform <- c("A0" = paste("A0 ~", base),
 
 ## Pooled SD for the e-value. Computed after the censoring block, so it is taken
 ## over the 352 patients whose outcome survives monotone censoring - the same
-## 352 as the main analysis, which puts the S10 e-values on the Table 2 scale.
+## 352 as the main analysis, which puts the S10 e-values on the Table 3 scale.
 ## Computing it before the block would add the 26 late-recorded outcomes.
 sd_y <- sd(d$Y2, na.rm = TRUE)
 stopifnot(sum(!is.na(d$Y2)) == 352)
@@ -2121,7 +2122,7 @@ det.g <- function(data, current.node, nodes) {
 ###################>>>>>> Helpers
 
 ## E-value using the SD of the outcome in the analysed sample. This is the
-## convention behind Table 2 and Figure 3: the SDs differ by subgroup 
+## convention behind Table 3 and Figure 3: the SDs differ by subgroup 
 evalue_md <- function(est, sd_y) {
   rr <- exp(0.91 * abs(est / sd_y))
   rr + sqrt(rr * (rr - 1))
