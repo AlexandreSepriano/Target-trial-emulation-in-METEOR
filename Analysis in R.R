@@ -172,7 +172,7 @@ packageVersion("ltmle") # 1.3.0
 
 #####>>>>>> Prepare the data
 
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Datasets/")
+setwd("C:/mypath/Datasets/")
 
 meteor12ltmlemocondswitch <- read.csv(file="meteor12ltmlemocondswitch.csv", header=TRUE, sep=",")
 names(meteor12ltmlemocondswitch)[names(meteor12ltmlemocondswitch) == "switchnextt2"] <- "L1s"
@@ -282,7 +282,7 @@ S4 <- data.frame(
 cat("\nSupplementary Table S4 (N =", nrow(d), ")\n\n")
 print(S4, row.names = FALSE, right = FALSE)
 
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Tables/")
+setwd("C:/mypath/Tables/")
 writexl::write_xlsx(S4, "TableS4ltmle.xlsx")
 
 
@@ -401,7 +401,7 @@ packageVersion("survey") # 4.5
 
 #####>>>>>> Prepare the data
 
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Datasets/")
+setwd("C:/mypath/Datasets/")
 d <- read.csv("meteor12longnext.csv", header = TRUE, sep = ",") # Open dataset
 d <- d[order(d$id, d$t0), ] # Reorder ID and Time (t0)
 
@@ -543,7 +543,7 @@ t3_msm <- data.frame(
 )
 print(t3_msm)
 
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Tables/")
+setwd("C:/mypath/Tables/")
 writexl::write_xlsx(t3_msm, "Table3msm.xlsx")
 
 
@@ -824,7 +824,7 @@ for (h in c(0, 1)) {
 
 #####>>>>>> Export
 
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Tables/")
+setwd("C:/mypath/Tables/")
 sheets <- list(S7 = s7)
 if (!is.null(s8[["0"]])) sheets$S8_no_bDMARD_int1  <- s8[["0"]]
 if (!is.null(s8[["1"]])) sheets$S8_bDMARD_int1     <- s8[["1"]]
@@ -954,7 +954,7 @@ packageVersion("gfoRmula") # 1.1.1
 
 ###################>>>>>> Prepare the data
 
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Datasets/")
+setwd("C:/mypath/Datasets/")
 meteor12 <- read.csv(file="meteor12longnext.csv", header=TRUE, sep=",")
 setDT(meteor12)
 
@@ -1087,7 +1087,7 @@ table3_data <- data.table(
 )
 
 # 2. Export the data frame directly to Excel
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Tables/")
+setwd("C:/mypath/Tables/")
 writexl::write_xlsx(table3_data, "Table3gformula.xlsx")
 
 # 3. Create the flextable for viewer display/Word output
@@ -1157,7 +1157,7 @@ writexl::write_xlsx(s6, "TableS6gformula.xlsx")
 
 ###################>>>>>> Prepare the data
 
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Datasets/")
+setwd("C:/mypath/Datasets/")
 gee_d <- read.csv("meteor12longnext.csv", header = TRUE, sep = ",")
 gee_d <- gee_d[order(gee_d$id, gee_d$t0), ]
 
@@ -1259,7 +1259,7 @@ print(t3_gee)
 cat(sprintf("\nPredictive margins: untreated %.2f, treated %.2f (difference %.2f)\n",
             po0_gee, po1_gee, po1_gee - po0_gee))
 
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Tables/")
+setwd("C:/mypath/Tables/")
 writexl::write_xlsx(t3_gee, "Table3gee.xlsx")
 
 
@@ -1277,7 +1277,7 @@ writexl::write_xlsx(t3_gee, "Table3gee.xlsx")
 
 ###################>>>>>> Prepare the data
 
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Datasets/")
+setwd("C:/mypath/Datasets/")
 d <- read.csv(file = "meteor12ltmlemocondswitch.csv", header = TRUE, sep = ",")
 names(d)[names(d) == "switchnextt2"] <- "L1s"
 d <- d %>% relocate(L1s, .before = A1)
@@ -1421,7 +1421,7 @@ cat("\nTrunc%: strategy arm. results$trunc_either_pct holds the union of both ar
 
 ## Full numeric table for export
 print(results)
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Tables/")
+setwd("C:/mypath/Tables/")
 writexl::write_xlsx(results, "TableS9 & Figure 3.xlsx")
 
 
@@ -1627,11 +1627,11 @@ forest_plot <- ggplot(df2, aes(x = row_fac, y = ate_est)) +
 forest_plot
 
 ggsave(filename = "Figure 3.png",
-       path = "C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Figures/",
+       path = "C:/mypath/Figures/",
        width = 17, height = 10, dpi = 600)
 
 ggsave(filename = "Figure 3.emf",
-       path = "C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Figures/",
+       path = "C:/mypath/Figures/",
        width = 17, height = 10, dpi = 600)
 
 
@@ -1650,7 +1650,7 @@ ggsave(filename = "Figure 3.emf",
 
 ###################>>>>>> Prepare the data
 
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Datasets/")
+setwd("C:/mypath/Datasets/")
 d <- read.csv("meteor12ltmlemocondswitchMI.csv")
 names(d)[names(d) == "switchnextt2"] <- "L1s"
 
@@ -1864,7 +1864,7 @@ print(s10diag)
 
 
 ###################>>>>>> Prepare the data
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Datasets/")
+setwd("C:/mypath/Datasets/")
 WIDE <- "meteor12ltmlemocondswitch.csv"    # one row per patient, n = 352
 LONG <- "originalfulllong761.csv"          # long file, only for the extra exposure columns
 
@@ -2066,7 +2066,7 @@ print(s10_def_diag)
 ## The primary-definition rows of analysis B reproduce Supplementary Table S9
 ## and Figure 3 exactly and are kept as the reference row of each block.
 
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Datasets/")
+setwd("C:/mypath/Datasets/")
 
 WIDE <- "meteor12ltmlemocondswitch.csv"     # completers, n = 352
 MI   <- "meteor12ltmlemocondswitchMI.csv"   # all eligible, n = 761
@@ -2313,7 +2313,7 @@ print(s10_strat_diag)
 
 ###################>>>>>> Export
 
-setwd("C:/Users/alexa/OneDrive/work/Projects/Causal_axSpA/METEOR/Data/Main manuscript/0_Final code/Tables/")
+setwd("C:/mypath/Tables/")
 write_xlsx(list(S10_strategies             = s10_strat,
                 S10_strategies_diagnostics = s10_strat_diag,
                 numeric                    = res),
