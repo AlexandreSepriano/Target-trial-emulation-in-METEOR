@@ -1118,6 +1118,8 @@ writexl::write_xlsx(s6, "TableS6gformula.xlsx")
 ################################ Table 3 #######################################
 ################################################################################
 
+packageVersion("geepack") # 1.3.12
+               
 ## Estimator: Time-varying GEE
 ##
 ## Estimand: The longitudinal effect of a bDMARD during the preceding interval
